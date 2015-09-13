@@ -3,6 +3,10 @@ var http = require('http'),
     request = require('request'),
     _ = require('lodash');
 
+var express=require('express');
+
+var app = express();
+
 //define a port we want to listen to
 const PORT=5000;
 
@@ -17,27 +21,32 @@ function randomInt (low, high) {
 }
 
 //We need a function which handles requests and send response
-function handleRequest(req, response){
+//function handleRequest(req, response){
+app.get('/', function(req, res) {
+//    console.log(req);
 
-    console.log(req);
 
     var rand = randomInt(0, address.length);
     console.log(rand);
-    req.url = address[rand];//"http://localhost:25280"
-    request(req, function(err, res, body) {
+   req.url = address[rand];//"http://localhost:25280"
+    //req.url = 'http://www.google.com';
+
+    request(req, function(err, response, body) {
         if (err) {
             throw err;
         }
-        console.log(res);
-        response.end(JSON.parse(JSON.stringify(res)));
+        console.log(response);
+        res.end(JSON.parse(JSON.stringify(response)));
     });
-}
+});
 
 //Create a server
-var server = http.createServer(handleRequest);
+//var server = http.createServer(handleRequest);
 
 //Lets start our server
-server.listen(PORT, function(){
-    //Callback triggered when server is successfully listening. Hurray!
-    console.log("Server listening on: http://localhost:%s", PORT);
-});
+//app.listen(PORT, function(){
+//    //Callback triggered when server is successfully listening. Hurray!
+//    console.log("Server listening on: http://localhost:%s", PORT);
+//});
+
+app.listen(PORT);
