@@ -4,13 +4,13 @@ var http = require('http'),
 
 //Initialise server array
 
-address = ['http://www.google.com', 'http://www.flipkart.com', 'http://stayzilla.com', 'http://photosapi.qa.stayzilla.com/pictures/hotel'];
+address = ['http://www.google.com', 'http://www.flipkart.com', 'http://stayzilla.com'];
 
 /**
  *This function generates random integer between two numbers low (inclusive) and high (exclusive) ([low, high))
- * @param low
- * @param high
- * @returns {number}
+ * @param low : lower limit of random numbers range
+ * @param high : upper limit of random numbers range
+ * @returns {number} : Random integer between high(exclusive) and low (inclusive)
  */
 function randomInt(low, high) {
     return Math.floor(Math.random() * (high - low) + low);
